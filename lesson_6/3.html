@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<div class="stars_container">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+</div>
+
+<script>
+  "use strict";
+
+  /*
+  1. При наведении на любую из звезд, данной звезде должен ставиться класс
+  golden, также такой класс должен ставиться всем звездам до нее слева.
+  */
+
+  const starsContainerEl = document.querySelector('.stars_container');
+  const starsEls = document.querySelectorAll('.fas');
+
+  for(const [index, element] of starsEls.entries()) {
+    element.dataset.idx = index;
+  }
+
+  document.addEventListener('mouseover', (event) => {
+    if (event.target.tagName !== 'I') {
+      for (const element of starsEls) {
+        element.classList.remove('golden');
+      }
+    }
+    for (let i = 0; i <= event.target.dataset.idx; i++) {
+      starsContainerEl.querySelector(`[data-idx="${i}"]`).classList.add('golden');
+    }
+  });
+
+  /*
+  2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+  задания должны быть удалены.
+   */
+
+  // Реализовано в строках 50-52.
+
+  /*
+  3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+  звезды (временно могут становиться черными). Почему так? Напишите словами.
+  Можем ли мы это исправить? Если да, то предложите решение.
+  */
+
+  /* Мирцание из-за расстояния между элемениами. Когда мышка попадает между
+  звёзд, срабатывает событие по ветвлению if. Нкжно сделать так, чтобы элементы
+  находились в блоках, а блоки прилипали друг к другу. 
+  */ 
+</script>
+</body>
+</html>
